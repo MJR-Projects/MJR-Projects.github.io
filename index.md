@@ -8,7 +8,7 @@ layout: home
 </button>
 
 <!-- Dark mode CSS -->
-<link rel="stylesheet" href="assets/css/dark-mode.css">
+<link rel="stylesheet" href="/assets/css/dark-mode.css">
 
 <!-- Dark mode JS -->
-<script src="assets/js/theme-toggle.js"></script>
+<script src="/assets/js/theme-toggle.js"></script>
