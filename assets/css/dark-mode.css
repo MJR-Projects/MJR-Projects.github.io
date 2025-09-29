@@ -1,14 +1,23 @@
-/* Dark mode styles */
+/* General dark mode styles */
 body.dark-mode {
   background-color: #121212;
-  color: #f0f0f0;
+  color: #e0e0e0;
 }
 
-body.dark-mode a {
-  color: #1e90ff;
+/* Headings */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #ffffff;
 }
 
-body.dark-mode header,
-body.dark-mode footer {
-  background-color: #1a1a1a;
+/* Navbar, footer, sections */
+body.dark-mode .navbar,
+body.dark-mode footer,
+body.dark-mode section {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
 }
