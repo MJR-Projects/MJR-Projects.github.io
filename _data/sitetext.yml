@@ -17,14 +17,14 @@ en: &DEFAULT_EN
     buttonlink: "#services"
 
   services:
-    title: "Services"
+    title: "Our Projects"
     text: "Lorem ipsum"
     section: services
     list:
-      - title: "E-Commerce"
+      - title: "E-waste Management Non-Profit (EcoBytes)"
         desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
         icon: fas fa-shopping-cart #find more at https://fontawesome.com/icons
-      - title: "Responsive Design"
+      - title: "Startup Study App"
         desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
         icon: fas fa-laptop
       - title: "[Markdown](https://en.wikipedia.org/wiki/Markdown)"
