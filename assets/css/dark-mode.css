@@ -1,9 +1,9 @@
-/* Smooth transition for everything */
-body, section, header, footer, .navbar, .container, .card, .timeline-event {
-  transition: background-color 0.5s ease, color 0.5s ease;
+/* Smooth transitions */
+* {
+  transition: background-color 0.5s ease, color 0.5s ease !important;
 }
 
-/* Body background and text */
+/* Dark mode for body text and backgrounds */
 body.dark-mode {
   background-color: #111 !important;
   color: #eee !important;
@@ -14,23 +14,22 @@ body.dark-mode .navbar {
   background-color: #1a1a1a !important;
 }
 
-/* Header / hero section */
-body.dark-mode header {
+/* Header / hero */
+body.dark-mode header, 
+body.dark-mode header .container {
   background-color: #1a1a1a !important;
   color: #eee !important;
 }
 
-/* Sections (services, portfolio, timeline, about, contact) */
-body.dark-mode section {
-  background-color: #1a1a1a !important;
-  color: #eee !important;
-}
-
-/* Portfolio cards / team / timeline events */
+/* All main sections */
+body.dark-mode section, 
+body.dark-mode .container, 
+body.dark-mode .container-fluid, 
 body.dark-mode .card, 
+body.dark-mode .team-member, 
 body.dark-mode .timeline-event, 
-body.dark-mode .team-member {
-  background-color: #222 !important;
+body.dark-mode .portfolio-item {
+  background-color: #111 !important;
   color: #eee !important;
 }
 
@@ -40,15 +39,23 @@ body.dark-mode footer {
   color: #eee !important;
 }
 
-/* Links in dark mode */
+/* Links */
 body.dark-mode a {
-  color: #ffd700; /* golden links */
-  transition: color 0.5s ease;
+  color: #ffd700 !important;
 }
 
-/* Buttons in dark mode */
+/* Buttons */
 body.dark-mode button {
-  background-color: rgba(50,50,50,0.8);
-  color: #fff;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  background-color: rgba(50,50,50,0.8) !important;
+  color: #fff !important;
+}
+
+/* Images filter (optional, for slightly dimmed effect) */
+body.dark-mode img {
+  filter: brightness(0.85);
+}
+
+/* Optional: make subtle div backgrounds consistent */
+body.dark-mode [class*="bg-"] {
+  background-color: #111 !important;
 }
