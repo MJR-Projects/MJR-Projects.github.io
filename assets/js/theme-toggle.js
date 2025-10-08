@@ -1,45 +1,53 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Create the dark mode button
-  const btn = document.createElement("button");
+  // Paths to your icons (make sure they're in assets/img/)
+  const darkIcon = "/assets/img/DarkMode.png";
+  const lightIcon = "/assets/img/LightMode.png";
+
+  // Create the button
+  const btn = document.createElement("img");
   btn.id = "theme-toggle";
-  btn.textContent = "🌙 / ☀️";
+  btn.src = darkIcon; // Default to dark mode icon
   Object.assign(btn.style, {
     position: "fixed",
-    top: "1rem",
-    right: "1rem",
-    zIndex: 1050,           // Above navbar
-    padding: "0.5rem 1rem",
-    fontSize: "1.2rem",
+    bottom: "1.5rem",
+    right: "1.5rem",
+    width: "48px",
+    height: "48px",
     cursor: "pointer",
-    background: "rgba(255,255,255,0.8)",
-    border: "none",
-    borderRadius: "0.5rem",
-    transition: "background 0.3s ease"
+    zIndex: "9999",
+    borderRadius: "50%",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+    transition: "transform 0.2s ease, opacity 0.3s ease"
   });
   document.body.appendChild(btn);
 
-  // Load dark mode preference from localStorage
-  if (localStorage.getItem("theme") === "dark") {
+  // Fade transitions for the whole page
+  const style = document.createElement("style");
+  style.textContent = `
+    body, body * {
+      transition: background-color 0.4s ease, color 0.4s ease !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Apply saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
+    btn.src = lightIcon; // Show light icon when in dark mode
   }
 
-  // Toggle dark mode on button click
+  // Toggle on click
   btn.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
-    localStorage.setItem(
-      "theme",
-      document.body.classList.contains("dark-mode") ? "dark" : "light"
-    );
+    const dark = document.body.classList.contains("dark-mode");
+    localStorage.setItem("theme", dark ? "dark" : "light");
+    btn.src = dark ? lightIcon : darkIcon;
   });
 
-  // Apply system preference if no saved theme
-  if (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  // Respect system preference if nothing saved
+  if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.body.classList.add("dark-mode");
+    btn.src = lightIcon;
   }
-
-  // Load dark-mode.css
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = "/assets/css/dark-mode.css"; // Root path for GitHub Pages
-  document.head.appendChild(link);
 });
