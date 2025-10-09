@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Paths to your icons (make sure they're in assets/img/)
+  // === DARK MODE BUTTON ===
   const darkIcon = "/assets/img/DarkMode.png";
   const lightIcon = "/assets/img/LightMode.png";
 
-  // Create the button
   const btn = document.createElement("img");
   btn.id = "theme-toggle";
-  btn.src = darkIcon; // Default to dark mode icon
+  btn.src = darkIcon;
   Object.assign(btn.style, {
     position: "fixed",
     bottom: "1.5rem",
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.body.appendChild(btn);
 
-  // Fade transitions for the whole page
+  // Smooth fade transitions for the whole page
   const style = document.createElement("style");
   style.textContent = `
     body, body * {
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark-mode");
-    btn.src = lightIcon; // Show light icon when in dark mode
+    btn.src = lightIcon;
   }
 
   // Toggle on click
@@ -43,11 +42,54 @@ document.addEventListener("DOMContentLoaded", function() {
     const dark = document.body.classList.contains("dark-mode");
     localStorage.setItem("theme", dark ? "dark" : "light");
     btn.src = dark ? lightIcon : darkIcon;
+    updateLogo(); // update logo when theme changes
   });
 
-  // Respect system preference if nothing saved
+  // Respect system preference if no saved theme
   if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.body.classList.add("dark-mode");
     btn.src = lightIcon;
   }
+
+  // === LOGO SETUP ===
+  const logo = document.createElement("img");
+  logo.id = "site-logo";
+  logo.src = "/assets/img/LightLogo.png"; // default (light mode)
+  logo.alt = "Site Logo";
+
+  // Make it clickable
+  logo.addEventListener("click", () => {
+    window.location.href = "https://mjr-projects.github.io/";
+  });
+
+  // Style it
+  Object.assign(logo.style, {
+    position: "fixed",
+    top: "1rem",
+    left: "1rem",
+    width: "64px",
+    height: "64px",
+    cursor: "pointer",
+    zIndex: "9999",
+    transition: "transform 0.6s ease, opacity 0.3s ease"
+  });
+
+  // Hover spin animation
+  logo.addEventListener("mouseenter", () => {
+    logo.style.transform = "rotate(360deg)";
+  });
+  logo.addEventListener("mouseleave", () => {
+    logo.style.transform = "rotate(0deg)";
+  });
+
+  document.body.appendChild(logo);
+
+  // Change logo based on theme
+  function updateLogo() {
+    const dark = document.body.classList.contains("dark-mode");
+    logo.src = dark ? "/assets/img/DarkLogo.png" : "/assets/img/LightLogo.png";
+  }
+
+  // Update on load
+  updateLogo();
 });
