@@ -22,10 +22,10 @@ en: &DEFAULT_EN
     section: services
     list:
       - title: "E-waste Management Non-Profit (EcoBytes)"
-        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
+        desc: "E-waste cleansing in schools across Mississauga"
         icon: fas fa-shopping-cart #find more at https://fontawesome.com/icons
       - title: "Startup Study App"
-        desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit."
+        desc: "A new and improved way to study through the use of competitveness"
         icon: fas fa-laptop
       - title: "[Markdown](https://en.wikipedia.org/wiki/Markdown)"
         desc: "Your description here, full **Markdown** support"
