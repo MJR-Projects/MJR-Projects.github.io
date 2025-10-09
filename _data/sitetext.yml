@@ -25,7 +25,7 @@ en: &DEFAULT_EN
         desc: "E-waste cleansing in schools across Mississauga"
         icon: fas fa-shopping-cart #find more at https://fontawesome.com/icons
       - title: "Startup Study App"
-        desc: "A new and improved way to study through the use of competitveness"
+        desc: "A new and improved way to study through the use of competitveness (Coming Soon...)"
         icon: fas fa-laptop
       - title: "[Markdown](https://en.wikipedia.org/wiki/Markdown)"
         desc: "Your description here, full **Markdown** support"
