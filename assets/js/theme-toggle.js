@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", function() {
       logo.src = "/assets/img/DarkLogo.png";
     }
 
-    // === LOGO SPIN ===
+    // === LOGO SPIN (cool exponential) ===
     let spinning = false;
     logo.addEventListener("mouseenter", () => {
       if (spinning) return;
       spinning = true;
 
       let start = null;
-      const duration = 2000;
+      const duration = 2000; // 2s spin
       const totalRotation = 360;
 
       function animate(timestamp) {
@@ -109,6 +109,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
       requestAnimationFrame(animate);
     });
+
+    // === DYNAMIC LOGO RESIZE BASED ON NAVBAR ===
+    const navbar = document.querySelector(".navbar");
+    if (navbar) {
+      function resizeLogo() {
+        const navbarHeight = navbar.offsetHeight;
+        logo.style.height = Math.round(navbarHeight * 0.85) + "px"; // 85% of navbar
+        logo.style.width = "auto";
+      }
+      resizeLogo();
+      window.addEventListener("resize", resizeLogo);
+      window.addEventListener("scroll", resizeLogo);
+    }
 
   }, 100); // Delay to ensure Jekyll layout is ready
 });
