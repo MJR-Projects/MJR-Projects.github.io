@@ -20,33 +20,11 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.body.appendChild(btn);
 
-  // Inject fade + logo animation styles
+  // Fade transitions for page
   const style = document.createElement("style");
   style.textContent = `
-    /* Smooth fade for all elements */
     body, body *:not(img):not(svg) {
       transition: background-color 0.4s ease, color 0.4s ease !important;
-    }
-
-    /* Logo hover animation */
-    #site-logo {
-      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
-      transform-origin: center center;
-      display: block;
-      will-change: transform;
-    }
-
-    /* Hover effect: spin + scale + tilt for cool look */
-    #site-logo:hover {
-      animation: spin-scale 1s linear infinite;
-    }
-
-    @keyframes spin-scale {
-      0%   { transform: rotate(0deg) scale(1) skew(0deg,0deg); }
-      25%  { transform: rotate(90deg) scale(1.1) skew(3deg,-3deg); }
-      50%  { transform: rotate(180deg) scale(1) skew(0deg,0deg); }
-      75%  { transform: rotate(270deg) scale(1.1) skew(-3deg,3deg); }
-      100% { transform: rotate(360deg) scale(1) skew(0deg,0deg); }
     }
   `;
   document.head.appendChild(style);
@@ -67,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateLogo();
   });
 
-  // Respect system preference if nothing saved
+  // Respect system preference if no saved theme
   if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.body.classList.add("dark-mode");
     btn.src = lightIcon;
@@ -76,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // === LOGO SETUP ===
   const logo = document.createElement("img");
   logo.id = "site-logo";
-  logo.src = "/assets/img/LightLogo.png"; // default
+  logo.src = "/assets/img/LightLogo.png";
   logo.alt = "Site Logo";
 
   // Clickable logo
@@ -84,16 +62,17 @@ document.addEventListener("DOMContentLoaded", function() {
     window.location.href = "https://mjr-projects.github.io/";
   });
 
-  // Style logo (higher, slightly bigger)
+  // Logo style
   Object.assign(logo.style, {
     position: "fixed",
-    top: "0.4rem",      // a bit higher
-    left: "2rem",       // slightly right
-    width: "92px",      // bigger
+    top: "0.3rem",   // higher
+    left: "2rem",
+    width: "92px",
     height: "92px",
     cursor: "pointer",
     zIndex: "9999",
     display: "block",
+    transformOrigin: "center center"
   });
 
   document.body.appendChild(logo);
@@ -103,7 +82,30 @@ document.addEventListener("DOMContentLoaded", function() {
     const dark = document.body.classList.contains("dark-mode");
     logo.src = dark ? "/assets/img/DarkLogo.png" : "/assets/img/LightLogo.png";
   }
-
-  // Update on load
   updateLogo();
-});
+
+  // === COOL SPIN ANIMATION ===
+  let spinning = false;
+
+  function spinLogo() {
+    if (spinning) return;
+    spinning = true;
+
+    let start = null;
+    let duration = 2000; // total time for one full acceleration-deceleration spin
+    let totalRotation = 360; // degrees
+
+    function animate(timestamp) {
+      if (!start) start = timestamp;
+      let elapsed = timestamp - start;
+      let t = elapsed / duration; // 0 → 1
+
+      // Exponential easing: slow → fast → slow
+      // Using cubic ease-in-out: f(t) = t<sup>3</sup>/(t<sup>3</sup> + (1-t)<sup>3</sup>)
+      let eased = t < 0.5
+        ? 4 * t * t * t          // accelerating
+        : 1 - Math.pow(-2 * t + 2, 3) / 2; // decelerating
+
+      logo.style.transform = `rotate(${totalRotation * eased}deg)`;
+
+      if (elapse
