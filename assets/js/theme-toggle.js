@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (navbar) {
       function resizeLogo() {
         const navbarHeight = navbar.offsetHeight;
-        logo.style.height = Math.round(navbarHeight * 0.85) + "px"; // 85% of navbar
+        logo.style.height = Math.round(navbarHeight * 1) + "px"; // 100% of navbar
         logo.style.width = "auto";
       }
       resizeLogo();
