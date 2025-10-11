@@ -20,30 +20,33 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.body.appendChild(btn);
 
-  // Smooth fade transitions and logo spin CSS injected
+  // Inject fade + logo animation styles
   const style = document.createElement("style");
   style.textContent = `
-    /* Smooth color/background fades (avoid images/svg flicker) */
+    /* Smooth fade for all elements */
     body, body *:not(img):not(svg) {
       transition: background-color 0.4s ease, color 0.4s ease !important;
     }
 
-    /* Logo styles and spin keyframes */
+    /* Logo hover animation */
     #site-logo {
-      transition: transform 0.6s ease, opacity 0.3s ease;
+      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
       transform-origin: center center;
       display: block;
       will-change: transform;
     }
 
-    @keyframes spin-360 {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
+    /* Hover effect: spin + scale + tilt for cool look */
+    #site-logo:hover {
+      animation: spin-scale 1s linear infinite;
     }
 
-    /* on hover play one spin */
-    #site-logo:hover {
-      animation: spin-360 0.8s linear 1;
+    @keyframes spin-scale {
+      0%   { transform: rotate(0deg) scale(1) skew(0deg,0deg); }
+      25%  { transform: rotate(90deg) scale(1.1) skew(3deg,-3deg); }
+      50%  { transform: rotate(180deg) scale(1) skew(0deg,0deg); }
+      75%  { transform: rotate(270deg) scale(1.1) skew(-3deg,3deg); }
+      100% { transform: rotate(360deg) scale(1) skew(0deg,0deg); }
     }
   `;
   document.head.appendChild(style);
@@ -73,21 +76,21 @@ document.addEventListener("DOMContentLoaded", function() {
   // === LOGO SETUP ===
   const logo = document.createElement("img");
   logo.id = "site-logo";
-  logo.src = "/assets/img/LightLogo.png"; // default (light mode)
+  logo.src = "/assets/img/LightLogo.png"; // default
   logo.alt = "Site Logo";
 
-  // Make it clickable (go home)
+  // Clickable logo
   logo.addEventListener("click", () => {
     window.location.href = "https://mjr-projects.github.io/";
   });
 
-  // Style the logo (moved a bit higher and slightly right)
+  // Style logo (higher, slightly bigger)
   Object.assign(logo.style, {
     position: "fixed",
-    top: "0.6rem",      // moved higher (smaller = higher)
-    left: "2.0rem",     // a touch more right than before
-    width: "88px",      // slightly bigger
-    height: "88px",
+    top: "0.4rem",      // a bit higher
+    left: "2rem",       // slightly right
+    width: "92px",      // bigger
+    height: "92px",
     cursor: "pointer",
     zIndex: "9999",
     display: "block",
@@ -95,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.body.appendChild(logo);
 
-  // Change logo based on theme
+  // Update logo based on theme
   function updateLogo() {
     const dark = document.body.classList.contains("dark-mode");
     logo.src = dark ? "/assets/img/DarkLogo.png" : "/assets/img/LightLogo.png";
