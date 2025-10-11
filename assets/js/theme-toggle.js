@@ -26,6 +26,14 @@ document.addEventListener("DOMContentLoaded", function() {
     body, body * {
       transition: background-color 0.4s ease, color 0.4s ease !important;
     }
+
+    /* Add smooth spin animation for the logo */
+    #site-logo {
+      transition: transform 0.8s ease, opacity 0.3s ease;
+    }
+    #site-logo:hover {
+      transform: rotate(360deg);
+    }
   `;
   document.head.appendChild(style);
 
@@ -42,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const dark = document.body.classList.contains("dark-mode");
     localStorage.setItem("theme", dark ? "dark" : "light");
     btn.src = dark ? lightIcon : darkIcon;
-    updateLogo(); // update logo when theme changes
+    updateLogo();
   });
 
   // Respect system preference if no saved theme
@@ -62,24 +70,15 @@ document.addEventListener("DOMContentLoaded", function() {
     window.location.href = "https://mjr-projects.github.io/";
   });
 
-  // Style it
+  // Style the logo
   Object.assign(logo.style, {
     position: "fixed",
     top: "1rem",
-    left: "1rem",
-    width: "64px",
-    height: "64px",
+    left: "2.5rem", // moved a bit to the right
+    width: "80px",  // made larger
+    height: "80px",
     cursor: "pointer",
     zIndex: "9999",
-    transition: "transform 0.6s ease, opacity 0.3s ease"
-  });
-
-  // Hover spin animation
-  logo.addEventListener("mouseenter", () => {
-    logo.style.transform = "rotate(360deg)";
-  });
-  logo.addEventListener("mouseleave", () => {
-    logo.style.transform = "rotate(0deg)";
   });
 
   document.body.appendChild(logo);
