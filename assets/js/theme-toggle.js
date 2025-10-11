@@ -110,17 +110,25 @@ document.addEventListener("DOMContentLoaded", function() {
       requestAnimationFrame(animate);
     });
 
-    // === DYNAMIC LOGO RESIZE BASED ON NAVBAR ===
+    // === NAVBAR SCROLL / DYNAMIC LOGO RESIZE ===
     const navbar = document.querySelector(".navbar");
     if (navbar) {
-      function resizeLogo() {
+      function updateNavbar() {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+
+        // Resize logo relative to navbar height
         const navbarHeight = navbar.offsetHeight;
-        logo.style.height = Math.round(navbarHeight * 1) + "px"; // 100% of navbar
+        logo.style.height = Math.round(navbarHeight * 0.85) + "px"; // 85% of navbar height
         logo.style.width = "auto";
       }
-      resizeLogo();
-      window.addEventListener("resize", resizeLogo);
-      window.addEventListener("scroll", resizeLogo);
+
+      updateNavbar();
+      window.addEventListener("resize", updateNavbar);
+      window.addEventListener("scroll", updateNavbar);
     }
 
   }, 100); // Delay to ensure Jekyll layout is ready
