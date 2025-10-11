@@ -3,107 +3,112 @@ document.addEventListener("DOMContentLoaded", function() {
   const darkIcon = "/assets/img/DarkMode.png";
   const lightIcon = "/assets/img/LightMode.png";
 
-  const btn = document.createElement("img");
-  btn.id = "theme-toggle";
-  btn.src = darkIcon;
-  Object.assign(btn.style, {
-    position: "fixed",
-    bottom: "1.5rem",
-    right: "1.5rem",
-    width: "48px",
-    height: "48px",
-    cursor: "pointer",
-    zIndex: "9999",
-    borderRadius: "50%",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
-    transition: "transform 0.2s ease, opacity 0.3s ease"
-  });
-  document.body.appendChild(btn);
+  // Wait until main content is loaded
+  setTimeout(() => {
 
-  // Inject fade + logo animation styles
-  const style = document.createElement("style");
-  style.textContent = `
-    /* Smooth fade for all elements */
-    body, body *:not(img):not(svg) {
-      transition: background-color 0.4s ease, color 0.4s ease !important;
+    const btn = document.createElement("img");
+    btn.id = "theme-toggle";
+    btn.src = darkIcon;
+    Object.assign(btn.style, {
+      position: "fixed",
+      bottom: "1.5rem",
+      right: "1.8rem",
+      width: "52px",
+      height: "52px",
+      cursor: "pointer",
+      zIndex: "10001",
+      borderRadius: "50%",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+      transition: "transform 0.2s ease, opacity 0.3s ease"
+    });
+    document.body.appendChild(btn);
+
+    // === LOGO SETUP ===
+    const logo = document.createElement("img");
+    logo.id = "site-logo";
+    logo.src = "/assets/img/LightLogo.png"; // default
+    logo.alt = "Site Logo";
+
+    logo.addEventListener("click", () => {
+      window.location.href = "https://mjr-projects.github.io/";
+    });
+
+    Object.assign(logo.style, {
+      position: "fixed",
+      top: "0.25rem",
+      left: "2.2rem",
+      width: "96px",
+      height: "96px",
+      cursor: "pointer",
+      zIndex: "10002", // higher than button
+      display: "block",
+      transformOrigin: "center center"
+    });
+    document.body.appendChild(logo);
+
+    // === FADE TRANSITIONS ===
+    const style = document.createElement("style");
+    style.textContent = `
+      body, body *:not(img):not(svg) {
+        transition: background-color 0.4s ease, color 0.4s ease !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // === DARK MODE LOGIC ===
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+      btn.src = lightIcon;
+      logo.src = "/assets/img/DarkLogo.png";
     }
 
-    /* Logo hover animation */
-    #site-logo {
-      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
-      transform-origin: center center;
-      display: block;
-      will-change: transform;
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      const dark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("theme", dark ? "dark" : "light");
+      btn.src = dark ? lightIcon : darkIcon;
+      logo.src = dark ? "/assets/img/DarkLogo.png" : "/assets/img/LightLogo.png";
+    });
+
+    if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.body.classList.add("dark-mode");
+      btn.src = lightIcon;
+      logo.src = "/assets/img/DarkLogo.png";
     }
 
-    /* Hover effect: spin + scale + tilt for cool look */
-    #site-logo:hover {
-      animation: spin-scale 1s linear infinite;
-    }
+    // === LOGO SPIN ===
+    let spinning = false;
+    logo.addEventListener("mouseenter", () => {
+      if (spinning) return;
+      spinning = true;
 
-    @keyframes spin-scale {
-      0%   { transform: rotate(0deg) scale(1) skew(0deg,0deg); }
-      25%  { transform: rotate(90deg) scale(1.1) skew(3deg,-3deg); }
-      50%  { transform: rotate(180deg) scale(1) skew(0deg,0deg); }
-      75%  { transform: rotate(270deg) scale(1.1) skew(-3deg,3deg); }
-      100% { transform: rotate(360deg) scale(1) skew(0deg,0deg); }
-    }
-  `;
-  document.head.appendChild(style);
+      let start = null;
+      const duration = 2000;
+      const totalRotation = 360;
 
-  // Apply saved theme
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-    btn.src = lightIcon;
-  }
+      function animate(timestamp) {
+        if (!start) start = timestamp;
+        let elapsed = timestamp - start;
+        let t = Math.min(elapsed / duration, 1);
 
-  // Toggle on click
-  btn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    const dark = document.body.classList.contains("dark-mode");
-    localStorage.setItem("theme", dark ? "dark" : "light");
-    btn.src = dark ? lightIcon : darkIcon;
-    updateLogo();
-  });
+        // Exponential ease in/out
+        const eased = t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-  // Respect system preference if nothing saved
-  if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.body.classList.add("dark-mode");
-    btn.src = lightIcon;
-  }
+        logo.style.transform = `rotate(${totalRotation * eased}deg)`;
 
-  // === LOGO SETUP ===
-  const logo = document.createElement("img");
-  logo.id = "site-logo";
-  logo.src = "/assets/img/LightLogo.png"; // default
-  logo.alt = "Site Logo";
+        if (elapsed < duration) {
+          requestAnimationFrame(animate);
+        } else {
+          logo.style.transform = "rotate(0deg)";
+          spinning = false;
+        }
+      }
 
-  // Clickable logo
-  logo.addEventListener("click", () => {
-    window.location.href = "https://mjr-projects.github.io/";
-  });
+      requestAnimationFrame(animate);
+    });
 
-  // Style logo (higher, slightly bigger)
-  Object.assign(logo.style, {
-    position: "fixed",
-    top: "0.4rem",      // a bit higher
-    left: "2rem",       // slightly right
-    width: "92px",      // bigger
-    height: "92px",
-    cursor: "pointer",
-    zIndex: "9999",
-    display: "block",
-  });
-
-  document.body.appendChild(logo);
-
-  // Update logo based on theme
-  function updateLogo() {
-    const dark = document.body.classList.contains("dark-mode");
-    logo.src = dark ? "/assets/img/DarkLogo.png" : "/assets/img/LightLogo.png";
-  }
-
-  // Update on load
-  updateLogo();
+  }, 100); // Delay to ensure Jekyll layout is ready
 });
