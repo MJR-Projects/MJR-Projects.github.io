@@ -26,9 +26,14 @@ body.dark-mode section {
   color: #e0e0e0 !important;
 }
 
-/* Keep the navbar the same in dark mode */
+/* Navbar */
 body.dark-mode .navbar {
-  background-color: #2f2f2f !important; /* change this to your exact gray if needed */
+  background-color: transparent !important; /* keep transparent at the top */
   color: inherit !important;
 }
 
+/* Navbar when scrolled */
+body.dark-mode .navbar.scrolled {
+  background-color: #2f2f2f !important; /* replace with your gray */
+  color: #e0e0e0 !important;
+}
