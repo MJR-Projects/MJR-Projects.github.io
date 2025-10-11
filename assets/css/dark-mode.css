@@ -19,10 +19,16 @@ body.dark-mode h6 {
   color: #ffffff;
 }
 
-/* Navbar, footer, sections */
-body.dark-mode .navbar,
+/* Footer and sections only — leave navbar color unchanged */
 body.dark-mode footer,
 body.dark-mode section {
   background-color: #1e1e1e !important;
   color: #e0e0e0 !important;
 }
+
+/* Keep the navbar the same in dark mode */
+body.dark-mode .navbar {
+  background-color: #2f2f2f !important; /* change this to your exact gray if needed */
+  color: inherit !important;
+}
+
