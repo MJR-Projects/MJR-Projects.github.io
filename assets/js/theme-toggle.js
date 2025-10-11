@@ -20,19 +20,30 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   document.body.appendChild(btn);
 
-  // Smooth fade transitions for the whole page
+  // Smooth fade transitions and logo spin CSS injected
   const style = document.createElement("style");
   style.textContent = `
-    body, body * {
+    /* Smooth color/background fades (avoid images/svg flicker) */
+    body, body *:not(img):not(svg) {
       transition: background-color 0.4s ease, color 0.4s ease !important;
     }
 
-    /* Add smooth spin animation for the logo */
+    /* Logo styles and spin keyframes */
     #site-logo {
-      transition: transform 0.8s ease, opacity 0.3s ease;
+      transition: transform 0.6s ease, opacity 0.3s ease;
+      transform-origin: center center;
+      display: block;
+      will-change: transform;
     }
+
+    @keyframes spin-360 {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* on hover play one spin */
     #site-logo:hover {
-      transform: rotate(360deg);
+      animation: spin-360 0.8s linear 1;
     }
   `;
   document.head.appendChild(style);
@@ -53,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateLogo();
   });
 
-  // Respect system preference if no saved theme
+  // Respect system preference if nothing saved
   if (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.body.classList.add("dark-mode");
     btn.src = lightIcon;
@@ -65,20 +76,21 @@ document.addEventListener("DOMContentLoaded", function() {
   logo.src = "/assets/img/LightLogo.png"; // default (light mode)
   logo.alt = "Site Logo";
 
-  // Make it clickable
+  // Make it clickable (go home)
   logo.addEventListener("click", () => {
     window.location.href = "https://mjr-projects.github.io/";
   });
 
-  // Style the logo
+  // Style the logo (moved a bit higher and slightly right)
   Object.assign(logo.style, {
     position: "fixed",
-    top: "1rem",
-    left: "2.5rem", // moved a bit to the right
-    width: "80px",  // made larger
-    height: "80px",
+    top: "0.6rem",      // moved higher (smaller = higher)
+    left: "2.0rem",     // a touch more right than before
+    width: "88px",      // slightly bigger
+    height: "88px",
     cursor: "pointer",
     zIndex: "9999",
+    display: "block",
   });
 
   document.body.appendChild(logo);
