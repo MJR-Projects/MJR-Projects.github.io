@@ -30,7 +30,7 @@ en: &DEFAULT_EN
         icon: fas fa-book
       - title: "Website Development"
         desc: "Your on our offical website right now!"
-        icon: fab fa-laptop-code
+        icon: fab fa-desktop
 
   portfolio:
     title: "Portfolio"
