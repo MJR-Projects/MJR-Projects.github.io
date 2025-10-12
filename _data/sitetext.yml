@@ -7,6 +7,8 @@
 # How to use:
 # {{ site.data.ui-text[site.locale].<var_name> | default: 'text' }}
 
+<script src="https://kit.fontawesome.com/6f9f92b4d0.js" crossorigin="anonymous"></script>
+
 # English (default)
 # -----------------
 en: &DEFAULT_EN
@@ -23,7 +25,7 @@ en: &DEFAULT_EN
     list:
       - title: "E-waste Management Non-Profit (EcoBytes)"
         desc: "EcoBytes is a Mississauga-based non-profit dedicated to environmental sustainability, offering free collection of e-waste from local schools and students for responsible recycling or strategic refurbishment."
-        icon: fas fa-laptop #find more at https://fontawesome.com/icons
+        <i class="fa-solid fa-microchip"></i> #find more at https://fontawesome.com/icons
       - title: "Startup Study App"
         desc: "A new and improved way to study through the use of competitveness (Coming Soon...)"
         icon: fas fa-laptop
