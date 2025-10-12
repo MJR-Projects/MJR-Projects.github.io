@@ -18,11 +18,11 @@ en: &DEFAULT_EN
 
   services:
     title: "Our Projects"
-    text: "Lorem ipsum"
+    text: "Check out everything!"
     section: services
     list:
       - title: "E-waste Management Non-Profit (EcoBytes)"
-        desc: "EcoBytes is a dedicated non-profit organization serving the Mississauga school community by providing free, secure, and environmentally responsible collection of e-waste (electronic waste) from public and private schools. Our core mission is to promote environmental stewardship and a circular economy by diverting harmful electronics—such as old computers, tablets, and peripherals—from local landfills and, wherever possible, refurbishing them for re-use by other educational or community programs. We make responsible e-waste disposal simple and accessible, transforming a pollution problem into a community solution."
+        desc: "EcoBytes is a Mississauga-based non-profit dedicated to environmental sustainability, offering free collection of e-waste from local schools and students for responsible recycling or strategic refurbishment."
         icon: fas fa-shopping-cart #find more at https://fontawesome.com/icons
       - title: "Startup Study App"
         desc: "A new and improved way to study through the use of competitveness (Coming Soon...)"
