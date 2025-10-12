@@ -77,6 +77,33 @@ document.addEventListener("DOMContentLoaded", function() {
       logo.src = "/assets/img/DarkLogo.png";
     }
 
+
+
+
+    // === TIMELINE IMAGE DARK MODE ===
+document.querySelectorAll(".timeline-image img").forEach(img => {
+  const lightLogo = "/assets/img/LightLogo.png";
+  const darkLogo = "/assets/img/DarkLogo.png";
+
+  // Store original light-mode timeline image
+  const originalSrc = img.src;
+
+  // Function to update timeline image based on dark mode
+  function updateTimelineImage() {
+    const dark = document.body.classList.contains("dark-mode");
+    img.src = dark ? darkLogo : originalSrc; // fallback to original light image if not dark mode
+  }
+
+  // Initial update
+  updateTimelineImage();
+
+  // Update whenever dark mode toggles
+  const darkModeBtn = document.getElementById("theme-toggle");
+  if (darkModeBtn) {
+    darkModeBtn.addEventListener("click", updateTimelineImage);
+  }
+});
+
     // === LOGO SPIN (cool exponential) ===
     let spinning = false;
     logo.addEventListener("mouseenter", () => {
@@ -122,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Resize logo relative to navbar height
         const navbarHeight = navbar.offsetHeight;
-        logo.style.height = Math.round(navbarHeight * 0.85) + "px"; // 85% of navbar height
+        logo.style.height = Math.round(navbarHeight * 1) + "px"; // 100% of navbar height
         logo.style.width = "auto";
       }
 
