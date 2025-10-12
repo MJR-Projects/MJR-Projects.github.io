@@ -32,9 +32,10 @@ body.dark-mode .navbar {
   color: inherit !important;
 }
 
+
 /* Portfolio / project boxes */
 body.dark-mode .portfolio-caption {
-  background-color: #1e1e1e !important; /* dark background for readability */
-  color: #e0e0e0 !important;           /* text remains readable */
-  border-color: #333 !important;       /* optional: darker border */
+  background-color: #2a2a2a !important; /* dark gray, stands out from background */
+  color: #e0e0e0 !important;           /* readable text */
+  border-color: #3a3a3a !important;     /* slightly lighter border for contrast */
 }
