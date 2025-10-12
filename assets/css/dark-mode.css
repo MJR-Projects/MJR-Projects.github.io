@@ -39,3 +39,15 @@ body.dark-mode .portfolio-caption {
   color: #e0e0e0 !important;           /* readable text */
   border-color: #3a3a3a !important;     /* slightly lighter border for contrast */
 }
+
+
+/* === NAVBAR TRANSPARENCY FIX === */
+.navbar {
+  background: transparent !important;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: saturate(120%) blur(6px);
+}
