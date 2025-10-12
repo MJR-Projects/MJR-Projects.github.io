@@ -116,6 +116,12 @@ document.querySelectorAll(".timeline-image img").forEach(img => {
   const lightSrc = img.src;              // current light image
   const darkSrc = lightSrc.replace("LightLogo.png", "DarkLogo.png"); // replace with dark version
 
+  // Make image fill circle
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.objectFit = "cover";
+  img.style.display = "block";
+
   function updateTimelineImage() {
     img.src = document.body.classList.contains("dark-mode") ? darkSrc : lightSrc;
   }
