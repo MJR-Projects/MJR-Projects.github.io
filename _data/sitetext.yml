@@ -27,7 +27,7 @@ en: &DEFAULT_EN
         icon: fas fa-microchip #find more at https://fontawesome.com/icons
       - title: "Startup Study App"
         desc: "A new and improved way to study through the use of competitveness (Coming Soon...)"
-        icon: fas fa-laptop
+        icon: fas fa-book
       - title: "[Markdown](https://en.wikipedia.org/wiki/Markdown)"
         desc: "Your description here, full **Markdown** support"
         icon: fab fa-markdown
