@@ -26,11 +26,19 @@ body.dark-mode section {
   color: #e0e0e0 !important;
 }
 
-/* Keep navbar gray / original color */
+/* Navbar color in dark mode */
 body.dark-mode .navbar {
-  background-color: #2f2f2f !important; /* change to your exact navbar gray */
+  background: transparent !important; /* allow transparency at top */
   color: inherit !important;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
 }
+
+/* Solid background when scrolled */
+body.dark-mode .navbar.scrolled {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: saturate(120%) blur(6px);
+}
+
 
 
 /* Portfolio / project boxes */
