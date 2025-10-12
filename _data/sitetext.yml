@@ -47,7 +47,8 @@ en: &DEFAULT_EN
       - title: "Our Humble Beginnings"
         year: "2009-2011"
         desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!"
-        image: assets/img/timeline/1.jpg
+        image: /assets/img/LightLogo.png
+        image_dark: /assets/img/DarkLogo.png
         alt:
       - title: "An Agency is Born"
         year: "March 2011"
