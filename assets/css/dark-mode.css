@@ -19,21 +19,22 @@ body.dark-mode h6 {
   color: #ffffff;
 }
 
-/* Footer and sections only — leave navbar color unchanged */
+/* Footer and sections only (leave navbar unchanged) */
 body.dark-mode footer,
 body.dark-mode section {
   background-color: #1e1e1e !important;
   color: #e0e0e0 !important;
 }
 
-/* Navbar */
+/* Keep navbar gray / original color */
 body.dark-mode .navbar {
-  background-color: transparent !important; /* keep transparent at the top */
+  background-color: #2f2f2f !important; /* change to your exact navbar gray */
   color: inherit !important;
 }
 
-/* Navbar when scrolled */
-body.dark-mode .navbar.scrolled {
-  background-color: #2f2f2f !important; /* replace with your gray */
-  color: #e0e0e0 !important;
+/* Portfolio / project boxes */
+body.dark-mode .portfolio-caption {
+  background-color: #1e1e1e !important; /* dark background for readability */
+  color: #e0e0e0 !important;           /* text remains readable */
+  border-color: #333 !important;       /* optional: darker border */
 }
