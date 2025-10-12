@@ -33,10 +33,10 @@ en: &DEFAULT_EN
         icon: fas fa-code
 
   portfolio:
-    title: "Portfolio"
-    text: "Lorem ipsum dolor sit amet consectetur."
+    title: "Schools (Coming Soon...)"
+    text: "Schools We Have Worked With"
     section: portfolio
-    closebutton: "Close Project"
+    closebutton: "Close School"
 
   timeline:
     title: "Timeline"
@@ -73,7 +73,7 @@ en: &DEFAULT_EN
   about:
     title: "About Us"
     text: "our story"
-    body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde. **Markdown** supported."
+    body: "We are a tight-knit team of 4 high schoolers (M's, J, and R being the founders) driven by a shared vision: to use creativity and code to make the world a better place. Though small in number, we are united by a big goal: leveraging technology to solve real-world problems and leave our community—and the world—a little bit better than we found it."
     section: about
 
   clients:
