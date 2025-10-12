@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.querySelectorAll(".timeline-image img").forEach((img, i) => {
   // manually map the first image to its dark mode
   const timelineDarkImages = [
-    "/assets/img/timeline/1-dark.jpg", // dark version of first image
+    "/assets/img/DarkLogo.png", // dark version of first image
     // add more if you have more timeline events
   ];
 
