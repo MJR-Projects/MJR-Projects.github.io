@@ -110,6 +110,27 @@ document.addEventListener("DOMContentLoaded", function() {
       requestAnimationFrame(animate);
     });
 
+
+    // === TIMELINE IMAGE DARK MODE ===
+document.querySelectorAll(".timeline-image img").forEach(img => {
+  const lightSrc = img.src;                    // default light image
+  const darkSrc = img.dataset.dark || lightSrc; // optional dark image
+
+  function updateTimelineImage() {
+    img.src = document.body.classList.contains("dark-mode") ? darkSrc : lightSrc;
+  }
+
+  // Initial set
+  updateTimelineImage();
+
+  // Update whenever dark mode toggles
+  const darkModeBtn = document.getElementById("theme-toggle");
+  if (darkModeBtn) {
+    darkModeBtn.addEventListener("click", updateTimelineImage);
+  }
+});
+
+
     // === NAVBAR SCROLL / DYNAMIC LOGO RESIZE ===
     const navbar = document.querySelector(".navbar");
     if (navbar) {
