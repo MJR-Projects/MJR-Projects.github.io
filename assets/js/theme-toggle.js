@@ -112,15 +112,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // === TIMELINE IMAGE DARK MODE ===
-document.querySelectorAll(".timeline-image img").forEach((img, i) => {
-  // manually map the first image to its dark mode
-  const timelineDarkImages = [
-    "/assets/img/DarkLogo.png", // dark version of first image
-    // add more if you have more timeline events
-  ];
-
-  const lightSrc = img.src;
-  const darkSrc = timelineDarkImages[i] || lightSrc;
+document.querySelectorAll(".timeline-image img").forEach(img => {
+  const lightSrc = img.src;              // current light image
+  const darkSrc = lightSrc.replace("LightLogo.png", "DarkLogo.png"); // replace with dark version
 
   function updateTimelineImage() {
     img.src = document.body.classList.contains("dark-mode") ? darkSrc : lightSrc;
@@ -129,10 +123,9 @@ document.querySelectorAll(".timeline-image img").forEach((img, i) => {
   updateTimelineImage();
 
   const darkModeBtn = document.getElementById("theme-toggle");
-  if (darkModeBtn) {
-    darkModeBtn.addEventListener("click", updateTimelineImage);
-  }
+  if (darkModeBtn) darkModeBtn.addEventListener("click", updateTimelineImage);
 });
+
 
 
     // === NAVBAR SCROLL / DYNAMIC LOGO RESIZE ===
