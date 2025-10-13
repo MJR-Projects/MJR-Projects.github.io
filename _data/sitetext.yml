@@ -33,7 +33,7 @@ en: &DEFAULT_EN
         icon: fas fa-code
 
   portfolio:
-    title: "Schools (Coming Soon...)"
+    title: "Partnered Schools (Coming Soon...)"
     text: "Schools We Have Worked With"
     section: portfolio
     closebutton: "Close School"
