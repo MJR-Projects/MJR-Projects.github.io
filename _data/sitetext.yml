@@ -22,7 +22,7 @@ en: &DEFAULT_EN
     text: "Check out everything!"
     section: services
     list:
-      - title: "E-waste Management Non-Profit (EcoBytes)"
+      - title: "E-waste Non-Profit (EcoBytes)"
         desc: "EcoBytes is a Mississauga-based non-profit dedicated to environmental sustainability, offering free collection of e-waste from local schools and students for responsible recycling or strategic refurbishment."
         icon: fas fa-microchip #find more at https://fontawesome.com/icons
       - title: "Startup Study App"
