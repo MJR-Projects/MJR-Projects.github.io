@@ -24,6 +24,8 @@ author     : MJR
 
 locale: "en-US" # See available languages in _data/sitetext.yml
 
+favicon: /assets/img/favicon-96x96.png
+
 analytics:
   google: #Google Analytics tracking code here
 
