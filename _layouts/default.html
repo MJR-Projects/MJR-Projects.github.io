@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ site.locale | slice: 0,2 | default: "en" }}">
+  <head>
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="/assets/img/favicon-96x96.png" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+      <link rel="shortcut icon" href="/assets/img/favicon.ico" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+      <meta name="apple-mobile-web-app-title" content="MJR" />
+      <link rel="manifest" href="/assets/img/site.webmanifest">
 
-  {% include head.html %}
+      <!-- Optional: any other head content, like meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
 
   <body id="page-top">
-
       {{ content }}
 
-	  {% include footer.html %}
+      {% include footer.html %}
 
-	  <!-- Bootstrap core JavaScript -->
-	  <script src="assets/js/jquery.min.js"></script>
-	  <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-	  <!-- Plugin JavaScript -->
-	  <script src="assets/js/jquery.easing.min.js"></script>
-
-	  <!-- Contact form JavaScript -->
-	  <script src="assets/js/jqBootstrapValidation.js"></script>
-	  <script src="assets/js/contact_me.js"></script>
-
-	  <!-- Custom scripts for this template -->
-	  <script src="assets/js/agency.min.js"></script>
-    {% include custom-scripts.html %}
+      {% include custom-scripts.html %}
   </body>
 </html>
